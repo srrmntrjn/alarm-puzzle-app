@@ -75,12 +75,26 @@ export default function HomeScreen() {
                   thumbColor={item.enabled ? '#007AFF' : '#f4f3f4'}
                 />
               </View>
-              <TouchableOpacity
-                style={styles.deleteButton}
-                onPress={() => deleteAlarm(item.id)}
-              >
-                <Text style={styles.deleteButtonText}>Delete</Text>
-              </TouchableOpacity>
+              <View style={styles.cardActions}>
+                <TouchableOpacity
+                  style={styles.editButton}
+                  onPress={() => router.push({ pathname: '/edit-alarm', params: { alarmId: item.id } })}
+                >
+                  <Text style={styles.editButtonText}>Edit</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.testButton}
+                  onPress={() => router.push({ pathname: '/trigger-alarm', params: { alarmId: item.id } })}
+                >
+                  <Text style={styles.testButtonText}>Test</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.deleteButton}
+                  onPress={() => deleteAlarm(item.id)}
+                >
+                  <Text style={styles.deleteButtonText}>Delete</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           )}
         />
@@ -179,16 +193,47 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#999',
   },
+  cardActions: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  editButton: {
+    backgroundColor: '#34C759',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    flex: 1,
+  },
+  editButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  testButton: {
+    backgroundColor: '#007AFF',
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: 8,
+    flex: 1,
+  },
+  testButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
+    textAlign: 'center',
+  },
   deleteButton: {
     backgroundColor: '#FF3B30',
     paddingVertical: 8,
-    paddingHorizontal: 16,
+    paddingHorizontal: 12,
     borderRadius: 8,
-    alignSelf: 'flex-start',
+    flex: 1,
   },
   deleteButtonText: {
     color: '#fff',
     fontSize: 14,
     fontWeight: '600',
+    textAlign: 'center',
   },
 });

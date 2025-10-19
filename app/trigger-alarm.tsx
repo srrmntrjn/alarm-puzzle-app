@@ -9,13 +9,21 @@ export default function TriggerAlarmScreen() {
   const params = useLocalSearchParams<{ alarmId: string; eventId?: string }>();
   const router = useRouter();
   const { getAlarmById, addTriggerEvent, updateTriggerEvent } = useAlarms();
-  const [alarm, setAlarm] = useState(getAlarmById(params.alarmId));
+  const [alarm, setAlarm] = useState<ReturnType<typeof getAlarmById>>(null);
   const [currentEventId, setCurrentEventId] = useState(params.eventId);
   const [snoozeCount, setSnoozeCount] = useState(0);
   const [sound, setSound] = useState<Audio.Sound>();
   const autoSnoozeTimer = useRef<NodeJS.Timeout>();
 
+  // Load alarm when component mounts or alarmId changes
   useEffect(() => {
+    const loadedAlarm = getAlarmById(params.alarmId);
+    setAlarm(loadedAlarm);
+  }, [params.alarmId, getAlarmById]);
+
+  useEffect(() => {
+    if (!alarm) return; // Don't run until alarm is loaded
+
     // Request audio permissions and play alarm sound
     async function playAlarmSound() {
       try {
@@ -40,7 +48,7 @@ export default function TriggerAlarmScreen() {
     playAlarmSound();
 
     // Create trigger event if this is a new alarm trigger
-    if (!currentEventId && alarm) {
+    if (!currentEventId) {
       const eventId = `event-${Date.now()}`;
       addTriggerEvent(alarm.id, {
         id: eventId,
@@ -65,7 +73,7 @@ export default function TriggerAlarmScreen() {
       }
       sound?.unloadAsync();
     };
-  }, []);
+  }, [alarm]);
 
   const handleSnooze = async () => {
     if (!alarm || !currentEventId) return;
