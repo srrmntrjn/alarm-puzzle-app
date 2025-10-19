@@ -40,12 +40,20 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
-          style={styles.historyButton}
-          onPress={() => router.push('/history')}
-        >
-          <Text style={styles.historyButtonText}>📊</Text>
-        </TouchableOpacity>
+        <View style={styles.leftButtons}>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => router.push('/history')}
+          >
+            <Text style={styles.iconButtonText}>📊</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.iconButton}
+            onPress={() => router.push('/friends')}
+          >
+            <Text style={styles.iconButtonText}>👥</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.title}>My Alarms</Text>
         <TouchableOpacity
           style={styles.addButton}
@@ -125,10 +133,14 @@ const styles = StyleSheet.create({
     borderBottomColor: '#e0e0e0',
   },
   title: {
-    fontSize: 32,
+    fontSize: 28,
     fontWeight: 'bold',
   },
-  historyButton: {
+  leftButtons: {
+    flexDirection: 'row',
+    gap: 8,
+  },
+  iconButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
@@ -136,7 +148,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  historyButtonText: {
+  iconButtonText: {
     fontSize: 20,
   },
   addButton: {
