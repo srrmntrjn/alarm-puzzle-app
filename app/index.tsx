@@ -1,7 +1,8 @@
-import { View, Text, StyleSheet, TouchableOpacity, FlatList, Switch, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, FlatList, Switch, ActivityIndicator, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAlarms } from '../hooks/useAlarms';
 import { ALARM_SOUNDS } from '../types/alarm';
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS } from '../constants/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -32,13 +33,15 @@ export default function HomeScreen() {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#007AFF" />
+        <StatusBar barStyle="light-content" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <View style={styles.leftButtons}>
           <TouchableOpacity
@@ -54,7 +57,7 @@ export default function HomeScreen() {
             <Text style={styles.iconButtonText}>👥</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.title}>My Alarms</Text>
+        <Text style={styles.title}>Snoozy</Text>
         <TouchableOpacity
           style={styles.addButton}
           onPress={() => router.push('/create-alarm')}
@@ -85,28 +88,29 @@ export default function HomeScreen() {
                 <Switch
                   value={item.enabled}
                   onValueChange={() => toggleAlarm(item.id)}
-                  trackColor={{ false: '#767577', true: '#81b0ff' }}
-                  thumbColor={item.enabled ? '#007AFF' : '#f4f3f4'}
+                  trackColor={{ false: COLORS.border, true: COLORS.primary }}
+                  thumbColor={COLORS.text}
+                  ios_backgroundColor={COLORS.border}
                 />
               </View>
               <View style={styles.cardActions}>
                 <TouchableOpacity
-                  style={styles.editButton}
+                  style={styles.actionButton}
                   onPress={() => router.push({ pathname: '/edit-alarm', params: { alarmId: item.id } })}
                 >
-                  <Text style={styles.editButtonText}>Edit</Text>
+                  <Text style={styles.actionButtonText}>Edit</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.testButton}
+                  style={styles.actionButton}
                   onPress={() => router.push({ pathname: '/trigger-alarm', params: { alarmId: item.id } })}
                 >
-                  <Text style={styles.testButtonText}>Test</Text>
+                  <Text style={styles.actionButtonText}>Test</Text>
                 </TouchableOpacity>
                 <TouchableOpacity
-                  style={styles.deleteButton}
+                  style={styles.actionButton}
                   onPress={() => deleteAlarm(item.id)}
                 >
-                  <Text style={styles.deleteButtonText}>Delete</Text>
+                  <Text style={styles.actionButtonText}>Delete</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -120,49 +124,51 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: COLORS.background,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    padding: SPACING.xl,
     paddingTop: 60,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: COLORS.border,
   },
   title: {
-    fontSize: 28,
-    fontWeight: 'bold',
+    fontSize: TYPOGRAPHY.xxxl,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.text,
   },
   leftButtons: {
     flexDirection: 'row',
-    gap: 8,
+    gap: SPACING.sm,
   },
   iconButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#f0f0f0',
+    borderRadius: RADIUS.full,
+    backgroundColor: COLORS.card,
     justifyContent: 'center',
     alignItems: 'center',
   },
   iconButtonText: {
-    fontSize: 20,
+    fontSize: TYPOGRAPHY.xl,
   },
   addButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#007AFF',
+    borderRadius: RADIUS.full,
+    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
+    ...SHADOWS.small,
   },
   addButtonText: {
-    color: '#fff',
+    color: COLORS.text,
     fontSize: 28,
-    fontWeight: '300',
+    fontWeight: TYPOGRAPHY.regular,
   },
   emptyContainer: {
     flex: 1,
@@ -171,98 +177,72 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   emptyText: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#666',
-    marginBottom: 8,
+    fontSize: TYPOGRAPHY.xxl,
+    fontWeight: TYPOGRAPHY.semibold,
+    color: COLORS.textSecondary,
+    marginBottom: SPACING.sm,
   },
   emptySubtext: {
-    fontSize: 16,
-    color: '#999',
+    fontSize: TYPOGRAPHY.base,
+    color: COLORS.textTertiary,
+    textAlign: 'center',
   },
   listContent: {
-    padding: 16,
+    padding: SPACING.lg,
   },
   alarmCard: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.card,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    marginBottom: SPACING.md,
+    ...SHADOWS.medium,
   },
   alarmMain: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 12,
+    marginBottom: SPACING.md,
   },
   alarmInfo: {
     flex: 1,
   },
   alarmTime: {
-    fontSize: 36,
-    fontWeight: 'bold',
+    fontSize: TYPOGRAPHY.huge,
+    fontWeight: TYPOGRAPHY.regular,
     marginBottom: 4,
+    color: COLORS.text,
   },
   alarmLabel: {
-    fontSize: 18,
-    color: '#333',
+    fontSize: TYPOGRAPHY.lg,
+    color: COLORS.text,
     marginBottom: 4,
   },
   alarmSchedule: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.textSecondary,
     marginBottom: 4,
   },
   alarmSound: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textTertiary,
   },
   cardActions: {
     flexDirection: 'row',
-    gap: 8,
+    gap: SPACING.sm,
   },
-  editButton: {
-    backgroundColor: '#34C759',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
+  actionButton: {
+    backgroundColor: COLORS.surface,
+    paddingVertical: SPACING.sm,
+    paddingHorizontal: SPACING.md,
+    borderRadius: RADIUS.sm,
     flex: 1,
+    borderWidth: 1,
+    borderColor: COLORS.border,
   },
-  editButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  testButton: {
-    backgroundColor: '#007AFF',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    flex: 1,
-  },
-  testButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
-    textAlign: 'center',
-  },
-  deleteButton: {
-    backgroundColor: '#FF3B30',
-    paddingVertical: 8,
-    paddingHorizontal: 12,
-    borderRadius: 8,
-    flex: 1,
-  },
-  deleteButtonText: {
-    color: '#fff',
-    fontSize: 14,
-    fontWeight: '600',
+  actionButtonText: {
+    color: COLORS.textSecondary,
+    fontSize: TYPOGRAPHY.sm,
+    fontWeight: TYPOGRAPHY.regular,
     textAlign: 'center',
   },
 });

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS } from '../constants/theme';
 
 // Mock data for visualization
 const MOCK_FRIENDS = [
@@ -127,13 +128,13 @@ export default function FriendsScreen() {
   const [selectedTab, setSelectedTab] = useState<'today' | 'week'>('today');
 
   const getStatusColor = (status: string) => {
-    return status === 'online' ? '#34C759' : '#999';
+    return status === 'online' ? COLORS.success : COLORS.textTertiary;
   };
 
   const getSnoozeColor = (count: number) => {
-    if (count === 0) return '#34C759';
-    if (count <= 2) return '#FF9500';
-    return '#FF3B30';
+    if (count === 0) return COLORS.success;
+    if (count <= 2) return COLORS.warning;
+    return COLORS.danger;
   };
 
   const getRankEmoji = (rank: number) => {
@@ -150,6 +151,7 @@ export default function FriendsScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       {/* Header */}
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
@@ -285,106 +287,105 @@ export default function FriendsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: COLORS.background,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    padding: SPACING.xl,
     paddingTop: 60,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: COLORS.border,
   },
   backButton: {
     width: 40,
   },
   backButtonText: {
     fontSize: 28,
-    color: '#007AFF',
+    color: COLORS.primary,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: TYPOGRAPHY.xxxl,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.text,
   },
   addButton: {
     width: 40,
     height: 40,
-    borderRadius: 20,
-    backgroundColor: '#007AFF',
+    borderRadius: RADIUS.full,
+    backgroundColor: COLORS.primary,
     justifyContent: 'center',
     alignItems: 'center',
+    ...SHADOWS.small,
   },
   addButtonText: {
-    color: '#fff',
+    color: COLORS.text,
     fontSize: 24,
-    fontWeight: '300',
+    fontWeight: TYPOGRAPHY.regular,
   },
   tabs: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
-    paddingHorizontal: 16,
-    paddingVertical: 8,
-    gap: 8,
+    backgroundColor: COLORS.surface,
+    paddingHorizontal: SPACING.lg,
+    paddingVertical: SPACING.sm,
+    gap: SPACING.sm,
   },
   tab: {
     flex: 1,
-    paddingVertical: 10,
+    paddingVertical: SPACING.md,
     alignItems: 'center',
-    borderRadius: 8,
-    backgroundColor: '#f0f0f0',
+    borderRadius: RADIUS.sm,
+    backgroundColor: COLORS.card,
   },
   activeTab: {
-    backgroundColor: '#007AFF',
+    backgroundColor: COLORS.primary,
   },
   tabText: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: '#666',
+    fontSize: TYPOGRAPHY.base,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.textSecondary,
   },
   activeTabText: {
-    color: '#fff',
+    color: COLORS.text,
   },
   listContent: {
-    padding: 16,
+    padding: SPACING.lg,
     paddingBottom: 100,
   },
   leaderboardHeader: {
-    alignItems: 'center',
-    marginBottom: 16,
+    alignItems: 'flex-start',
+    marginBottom: SPACING.lg,
   },
   leaderboardTitle: {
     fontSize: 28,
-    fontWeight: 'bold',
+    fontWeight: TYPOGRAPHY.regular,
     marginBottom: 4,
+    color: COLORS.text,
   },
   leaderboardSubtitle: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.textSecondary,
   },
   friendCard: {
-    backgroundColor: '#fff',
-    borderRadius: 16,
-    padding: 16,
-    marginBottom: 12,
+    backgroundColor: COLORS.card,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    marginBottom: SPACING.md,
     flexDirection: 'row',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    ...SHADOWS.medium,
   },
   yourCard: {
     borderWidth: 2,
-    borderColor: '#007AFF',
-    backgroundColor: '#F0F8FF',
+    borderColor: COLORS.primary,
+    backgroundColor: COLORS.card,
   },
   rankBadge: {
     width: 40,
     justifyContent: 'center',
-    alignItems: 'center',
-    marginRight: 12,
+    alignItems: 'flex-start',
+    marginRight: SPACING.md,
   },
   rankText: {
     fontSize: 24,
@@ -394,11 +395,11 @@ const styles = StyleSheet.create({
   },
   friendHeader: {
     flexDirection: 'row',
-    marginBottom: 12,
+    marginBottom: SPACING.md,
   },
   avatarContainer: {
     position: 'relative',
-    marginRight: 12,
+    marginRight: SPACING.md,
   },
   avatar: {
     fontSize: 40,
@@ -411,69 +412,71 @@ const styles = StyleSheet.create({
     height: 12,
     borderRadius: 6,
     borderWidth: 2,
-    borderColor: '#fff',
+    borderColor: COLORS.card,
   },
   nameContainer: {
     justifyContent: 'center',
   },
   name: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: TYPOGRAPHY.lg,
+    fontWeight: TYPOGRAPHY.regular,
     marginBottom: 2,
+    color: COLORS.text,
   },
   yourName: {
-    color: '#007AFF',
+    color: COLORS.primary,
   },
   lastSeen: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textTertiary,
   },
   statsRow: {
     flexDirection: 'row',
-    gap: 20,
-    marginBottom: 12,
+    gap: SPACING.xl,
+    marginBottom: SPACING.md,
   },
   statItem: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
   },
   statValue: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#007AFF',
+    fontSize: TYPOGRAPHY.xxl,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.primary,
   },
   statLabel: {
-    fontSize: 11,
-    color: '#666',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textSecondary,
     marginTop: 2,
   },
   lastAlarmContainer: {
-    backgroundColor: '#f8f8f8',
-    padding: 8,
-    borderRadius: 8,
+    backgroundColor: COLORS.surface,
+    padding: SPACING.sm,
+    borderRadius: RADIUS.sm,
   },
   lastAlarmText: {
-    fontSize: 13,
-    color: '#666',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.textSecondary,
   },
   bottomActions: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
-    padding: 16,
-    backgroundColor: '#fff',
+    padding: SPACING.lg,
+    backgroundColor: COLORS.surface,
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: COLORS.border,
   },
   actionButton: {
-    backgroundColor: '#34C759',
-    paddingVertical: 16,
-    borderRadius: 12,
+    backgroundColor: COLORS.success,
+    paddingVertical: SPACING.lg,
+    borderRadius: RADIUS.lg,
     alignItems: 'center',
+    ...SHADOWS.small,
   },
   actionButtonText: {
-    color: '#fff',
-    fontSize: 16,
-    fontWeight: '600',
+    color: COLORS.text,
+    fontSize: TYPOGRAPHY.base,
+    fontWeight: TYPOGRAPHY.regular,
   },
 });

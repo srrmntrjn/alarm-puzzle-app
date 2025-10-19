@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, AppState } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Audio } from 'expo-av';
 import { useAlarms } from '../hooks/useAlarms';
 import { scheduleSnoozeNotification } from '../services/notificationService';
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS } from '../constants/theme';
 
 export default function TriggerAlarmScreen() {
   const params = useLocalSearchParams<{ alarmId: string; eventId?: string }>();
@@ -128,6 +129,7 @@ export default function TriggerAlarmScreen() {
   if (!alarm) {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         <Text style={styles.errorText}>Alarm not found</Text>
       </View>
     );
@@ -142,6 +144,7 @@ export default function TriggerAlarmScreen() {
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.content}>
         <Text style={styles.time}>{formatTime(alarm.time.hour, alarm.time.minute)}</Text>
         <Text style={styles.label}>{alarm.label}</Text>
@@ -174,7 +177,7 @@ export default function TriggerAlarmScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: COLORS.background,
     justifyContent: 'space-between',
     paddingTop: 100,
     paddingBottom: 50,
@@ -183,42 +186,45 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   time: {
-    fontSize: 72,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginBottom: 16,
+    fontSize: 80,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.text,
+    marginBottom: SPACING.lg,
+    letterSpacing: 2,
   },
   label: {
-    fontSize: 24,
-    color: '#fff',
-    marginBottom: 8,
+    fontSize: TYPOGRAPHY.xxl,
+    color: COLORS.text,
+    marginBottom: SPACING.sm,
   },
   snoozeInfo: {
-    fontSize: 16,
-    color: '#999',
+    fontSize: TYPOGRAPHY.base,
+    color: COLORS.textSecondary,
   },
   errorText: {
-    color: '#fff',
-    fontSize: 18,
+    color: COLORS.text,
+    fontSize: TYPOGRAPHY.lg,
+    textAlign: 'center',
   },
   actions: {
-    paddingHorizontal: 20,
-    gap: 16,
+    paddingHorizontal: SPACING.xl,
+    gap: SPACING.lg,
   },
   button: {
-    paddingVertical: 20,
-    borderRadius: 12,
+    paddingVertical: SPACING.xxl,
+    borderRadius: RADIUS.lg,
     alignItems: 'center',
+    ...SHADOWS.large,
   },
   snoozeButton: {
-    backgroundColor: '#FF9500',
+    backgroundColor: COLORS.warning,
   },
   dismissButton: {
-    backgroundColor: '#34C759',
+    backgroundColor: COLORS.success,
   },
   buttonText: {
-    color: '#fff',
-    fontSize: 20,
-    fontWeight: '600',
+    color: COLORS.text,
+    fontSize: TYPOGRAPHY.xl,
+    fontWeight: TYPOGRAPHY.bold,
   },
 });

@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, ActivityIndicator, StatusBar } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useAlarms } from '../hooks/useAlarms';
 import { AlarmTriggerEvent } from '../types/alarm';
+import { COLORS, SPACING, RADIUS, TYPOGRAPHY, SHADOWS } from '../constants/theme';
 
 type AlarmEventWithDetails = AlarmTriggerEvent & {
   alarmLabel: string;
@@ -76,9 +77,9 @@ export default function HistoryScreen() {
   };
 
   const getSnoozeColor = (count: number) => {
-    if (count === 0) return '#34C759'; // Green
-    if (count <= 2) return '#FF9500'; // Orange
-    return '#FF3B30'; // Red
+    if (count === 0) return COLORS.success; // Green
+    if (count <= 2) return COLORS.warning; // Orange
+    return COLORS.danger; // Red
   };
 
   const toggleExpand = (eventId: string) => {
@@ -126,18 +127,20 @@ export default function HistoryScreen() {
   if (loading) {
     return (
       <View style={styles.container}>
-        <ActivityIndicator size="large" color="#007AFF" />
+        <StatusBar barStyle="light-content" />
+        <ActivityIndicator size="large" color={COLORS.primary} />
       </View>
     );
   }
 
   return (
     <View style={styles.container}>
+      <StatusBar barStyle="light-content" />
       <View style={styles.header}>
         <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
           <Text style={styles.backButtonText}>←</Text>
         </TouchableOpacity>
-        <Text style={styles.title}>Snooze Patterns</Text>
+        <Text style={styles.title}>Patterns</Text>
         <View style={styles.placeholder} />
       </View>
 
@@ -273,28 +276,29 @@ export default function HistoryScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: COLORS.background,
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 20,
+    padding: SPACING.xl,
     paddingTop: 60,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.surface,
     borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
+    borderBottomColor: COLORS.border,
   },
   backButton: {
     width: 40,
   },
   backButtonText: {
     fontSize: 28,
-    color: '#007AFF',
+    color: COLORS.primary,
   },
   title: {
-    fontSize: 24,
-    fontWeight: 'bold',
+    fontSize: TYPOGRAPHY.xxxl,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.text,
   },
   placeholder: {
     width: 40,
@@ -306,68 +310,60 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
   },
   emptyText: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: '#666',
-    marginBottom: 8,
+    fontSize: TYPOGRAPHY.xxl,
+    fontWeight: TYPOGRAPHY.semibold,
+    color: COLORS.textSecondary,
+    marginBottom: SPACING.sm,
   },
   emptySubtext: {
-    fontSize: 16,
-    color: '#999',
+    fontSize: TYPOGRAPHY.base,
+    color: COLORS.textTertiary,
     textAlign: 'center',
   },
   listContent: {
-    padding: 16,
+    padding: SPACING.lg,
     paddingTop: 0,
   },
   statsContainer: {
-    marginBottom: 8,
+    marginBottom: SPACING.sm,
   },
   statsRow: {
     flexDirection: 'row',
-    gap: 12,
-    marginBottom: 12,
+    gap: SPACING.md,
+    marginBottom: SPACING.md,
   },
   statCard: {
     flex: 1,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    alignItems: 'center',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.card,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    alignItems: 'flex-start',
+    ...SHADOWS.medium,
   },
   statValue: {
     fontSize: 28,
-    fontWeight: 'bold',
-    color: '#007AFF',
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.primary,
     marginBottom: 4,
   },
   statLabel: {
-    fontSize: 12,
-    color: '#666',
-    textAlign: 'center',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textSecondary,
+    textAlign: 'left',
   },
   historyTitle: {
-    fontSize: 18,
-    fontWeight: '600',
-    marginTop: 8,
-    marginBottom: 12,
-    color: '#333',
+    fontSize: TYPOGRAPHY.lg,
+    fontWeight: TYPOGRAPHY.regular,
+    marginTop: SPACING.sm,
+    marginBottom: SPACING.md,
+    color: COLORS.text,
   },
   eventCard: {
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 12,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    backgroundColor: COLORS.card,
+    borderRadius: RADIUS.lg,
+    padding: SPACING.lg,
+    marginBottom: SPACING.md,
+    ...SHADOWS.medium,
   },
   eventHeader: {
     flexDirection: 'row',
@@ -376,21 +372,22 @@ const styles = StyleSheet.create({
   },
   eventInfo: {
     flex: 1,
-    marginRight: 12,
+    marginRight: SPACING.md,
   },
   eventDate: {
-    fontSize: 12,
-    color: '#999',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textTertiary,
     marginBottom: 4,
   },
   eventLabel: {
-    fontSize: 18,
-    fontWeight: '600',
+    fontSize: TYPOGRAPHY.lg,
+    fontWeight: TYPOGRAPHY.regular,
     marginBottom: 4,
+    color: COLORS.text,
   },
   eventTime: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.textSecondary,
   },
   eventBadge: {
     alignItems: 'center',
@@ -404,59 +401,59 @@ const styles = StyleSheet.create({
     marginBottom: 4,
   },
   snoozeBadgeText: {
-    color: '#fff',
+    color: COLORS.text,
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: TYPOGRAPHY.regular,
   },
   snoozeLabel: {
-    fontSize: 11,
-    color: '#666',
+    fontSize: TYPOGRAPHY.xs,
+    color: COLORS.textSecondary,
   },
   durationText: {
-    fontSize: 14,
-    color: '#007AFF',
-    marginTop: 8,
-    fontWeight: '500',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.primary,
+    marginTop: SPACING.sm,
+    fontWeight: TYPOGRAPHY.regular,
   },
   activeText: {
-    fontSize: 14,
-    color: '#FF9500',
-    marginTop: 8,
-    fontWeight: '500',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.warning,
+    marginTop: SPACING.sm,
+    fontWeight: TYPOGRAPHY.regular,
   },
   expandedContent: {
-    marginTop: 16,
-    paddingTop: 16,
+    marginTop: SPACING.lg,
+    paddingTop: SPACING.lg,
     borderTopWidth: 1,
-    borderTopColor: '#e0e0e0',
+    borderTopColor: COLORS.border,
   },
   expandedTitle: {
-    fontSize: 14,
-    fontWeight: '600',
-    marginBottom: 12,
-    color: '#333',
+    fontSize: TYPOGRAPHY.sm,
+    fontWeight: TYPOGRAPHY.regular,
+    marginBottom: SPACING.md,
+    color: COLORS.text,
   },
   snoozeTimestamp: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 8,
+    marginBottom: SPACING.sm,
   },
   timestampNumber: {
-    fontSize: 14,
-    fontWeight: '600',
-    color: '#007AFF',
+    fontSize: TYPOGRAPHY.sm,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.primary,
     width: 30,
   },
   timestampTime: {
-    fontSize: 14,
-    color: '#666',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.textSecondary,
   },
   dismissedLabel: {
-    color: '#34C759',
+    color: COLORS.success,
   },
   noSnoozeText: {
-    fontSize: 14,
-    color: '#34C759',
+    fontSize: TYPOGRAPHY.sm,
+    color: COLORS.success,
     fontStyle: 'italic',
   },
 });
