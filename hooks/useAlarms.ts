@@ -83,6 +83,20 @@ export function useAlarms() {
         ...updates,
       };
 
+      // If time, schedule, or sound changed, reschedule notifications
+      const shouldReschedule = updates.time || updates.schedule || updates.sound;
+
+      if (shouldReschedule && alarm.enabled) {
+        // Cancel old notifications
+        if (alarm.notificationIds) {
+          await notificationService.cancelAlarmNotifications(alarm.notificationIds);
+        }
+
+        // Schedule new notifications
+        const notificationIds = await notificationService.scheduleAlarmNotifications(updatedAlarm);
+        updatedAlarm.notificationIds = notificationIds;
+      }
+
       await storageService.saveAlarm(updatedAlarm);
       await loadAlarms();
     } catch (err) {

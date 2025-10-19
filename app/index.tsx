@@ -40,6 +40,12 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
+        <TouchableOpacity
+          style={styles.historyButton}
+          onPress={() => router.push('/history')}
+        >
+          <Text style={styles.historyButtonText}>📊</Text>
+        </TouchableOpacity>
         <Text style={styles.title}>My Alarms</Text>
         <TouchableOpacity
           style={styles.addButton}
@@ -121,6 +127,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: 'bold',
+  },
+  historyButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#f0f0f0',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  historyButtonText: {
+    fontSize: 20,
   },
   addButton: {
     width: 40,
