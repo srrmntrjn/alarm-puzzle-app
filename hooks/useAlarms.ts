@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { Alarm, CreateAlarmInput, AlarmTriggerEvent } from '../types/alarm';
 import * as storageService from '../services/storageService';
+import * as notificationService from '../services/notificationService';
 
 export function useAlarms() {
   const [alarms, setAlarms] = useState<Alarm[]>([]);
@@ -42,11 +43,22 @@ export function useAlarms() {
         time: input.time,
         label: input.label,
         schedule: input.schedule,
+        sound: input.sound,
         enabled: true,
         createdAt: new Date().toISOString(),
         snoozeSettings: input.snoozeSettings,
         history: [],
       };
+
+      // Request notification permissions
+      const hasPermission = await notificationService.requestNotificationPermissions();
+      if (!hasPermission) {
+        throw new Error('Notification permissions not granted');
+      }
+
+      // Schedule notifications
+      const notificationIds = await notificationService.scheduleAlarmNotifications(newAlarm);
+      newAlarm.notificationIds = notificationIds;
 
       await storageService.saveAlarm(newAlarm);
       await loadAlarms();
@@ -83,6 +95,10 @@ export function useAlarms() {
   // Delete an alarm
   const deleteAlarm = useCallback(async (alarmId: string): Promise<void> => {
     try {
+      const alarm = alarms.find((a) => a.id === alarmId);
+      if (alarm?.notificationIds) {
+        await notificationService.cancelAlarmNotifications(alarm.notificationIds);
+      }
       await storageService.deleteAlarm(alarmId);
       await loadAlarms();
     } catch (err) {
@@ -90,7 +106,7 @@ export function useAlarms() {
       console.error(err);
       throw err;
     }
-  }, [loadAlarms]);
+  }, [alarms, loadAlarms]);
 
   // Toggle alarm enabled/disabled
   const toggleAlarm = useCallback(async (alarmId: string): Promise<void> => {
@@ -100,7 +116,20 @@ export function useAlarms() {
         throw new Error('Alarm not found');
       }
 
-      await updateAlarm(alarmId, { enabled: !alarm.enabled });
+      const newEnabled = !alarm.enabled;
+
+      // Cancel or reschedule notifications
+      if (newEnabled) {
+        // Reschedule
+        const notificationIds = await notificationService.scheduleAlarmNotifications(alarm);
+        await updateAlarm(alarmId, { enabled: true, notificationIds });
+      } else {
+        // Cancel
+        if (alarm.notificationIds) {
+          await notificationService.cancelAlarmNotifications(alarm.notificationIds);
+        }
+        await updateAlarm(alarmId, { enabled: false, notificationIds: [] });
+      }
     } catch (err) {
       setError('Failed to toggle alarm');
       console.error(err);

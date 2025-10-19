@@ -10,15 +10,37 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.alarmpuzzleapp"
+      "bundleIdentifier": "com.alarmpuzzleapp",
+      "infoPlist": {
+        "UIBackgroundModes": ["audio"]
+      }
     },
     "android": {
-      "package": "com.alarmpuzzleapp"
+      "package": "com.alarmpuzzleapp",
+      "permissions": [
+        "SCHEDULE_EXACT_ALARM",
+        "USE_EXACT_ALARM",
+        "POST_NOTIFICATIONS"
+      ]
+    },
+    "notification": {
+      "icon": "./assets/icon.png",
+      "color": "#007AFF",
+      "androidMode": "default",
+      "androidCollapsedTitle": "Alarm"
     },
     "plugins": [
       "expo-asset",
       "expo-font",
-      "expo-router"
+      "expo-router",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/icon.png",
+          "color": "#007AFF",
+          "sounds": []
+        }
+      ]
     ],
     "scheme": "alarmapp"
   }

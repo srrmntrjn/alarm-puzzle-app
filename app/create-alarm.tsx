@@ -17,7 +17,7 @@ import { useAlarms } from '../hooks/useAlarms';
 import { DaySelector } from '../components/DaySelector';
 import { SchedulePresets } from '../components/SchedulePresets';
 import { Colors } from '../constants/Colors';
-import { Alarm } from '../types/alarm';
+import { Alarm, ALARM_SOUNDS } from '../types/alarm';
 import { SCHEDULE_PRESETS } from '../utils/scheduleHelper';
 
 export default function CreateAlarmScreen() {
@@ -29,6 +29,7 @@ export default function CreateAlarmScreen() {
   const [label, setLabel] = useState('');
   const [time, setTime] = useState(new Date());
   const [schedule, setSchedule] = useState<Alarm['schedule']>(SCHEDULE_PRESETS.weekdays);
+  const [sound, setSound] = useState(ALARM_SOUNDS[0].id);
   const [snoozeDuration, setSnoozeDuration] = useState(10);
   const [showTimePicker, setShowTimePicker] = useState(true);
 
@@ -53,6 +54,7 @@ export default function CreateAlarmScreen() {
         },
         label: label.trim(),
         schedule,
+        sound,
         snoozeSettings: {
           duration: snoozeDuration,
         },
@@ -128,6 +130,46 @@ export default function CreateAlarmScreen() {
         <View style={styles.section}>
           <Text style={[styles.sectionTitle, { color: colors.text }]}>Custom Days</Text>
           <DaySelector schedule={schedule} onChange={setSchedule} />
+        </View>
+
+        {/* Sound Selection */}
+        <View style={styles.section}>
+          <Text style={[styles.sectionTitle, { color: colors.text }]}>Alarm Sound</Text>
+          <View style={styles.soundList}>
+            {ALARM_SOUNDS.map((alarmSound) => (
+              <TouchableOpacity
+                key={alarmSound.id}
+                style={[
+                  styles.soundOption,
+                  {
+                    backgroundColor: sound === alarmSound.id ? colors.primary : colors.card,
+                    borderColor: colors.border,
+                  },
+                ]}
+                onPress={() => setSound(alarmSound.id)}
+                activeOpacity={0.7}
+              >
+                <View style={styles.soundInfo}>
+                  <Text
+                    style={[
+                      styles.soundName,
+                      { color: sound === alarmSound.id ? '#FFFFFF' : colors.text },
+                    ]}
+                  >
+                    {alarmSound.name}
+                  </Text>
+                  <Text
+                    style={[
+                      styles.soundDescription,
+                      { color: sound === alarmSound.id ? '#FFFFFF' : colors.secondaryText },
+                    ]}
+                  >
+                    {alarmSound.description}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
 
         {/* Snooze Duration */}
@@ -221,6 +263,25 @@ const styles = StyleSheet.create({
     padding: 16,
     fontSize: 16,
     borderWidth: 1,
+  },
+  soundList: {
+    gap: 8,
+  },
+  soundOption: {
+    borderRadius: 12,
+    padding: 16,
+    borderWidth: 1,
+  },
+  soundInfo: {
+    flex: 1,
+  },
+  soundName: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginBottom: 4,
+  },
+  soundDescription: {
+    fontSize: 14,
   },
   snoozeOptions: {
     flexDirection: 'row',
