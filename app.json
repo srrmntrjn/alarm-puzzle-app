@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "alarm-puzzle-app",
+    "slug": "alarm-puzzle-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.alarmpuzzleapp"
+    },
+    "android": {
+      "package": "com.alarmpuzzleapp"
+    },
+    "plugins": [
+      "expo-asset",
+      "expo-font",
+      "expo-router"
+    ],
+    "scheme": "alarmapp"
+  }
+}

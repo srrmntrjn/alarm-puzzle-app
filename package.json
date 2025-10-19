@@ -1,0 +1,47 @@
+{
+  "name": "alarm-puzzle-app",
+  "version": "1.0.0",
+  "description": "An alarm application that requires solving puzzles to turn off the alarm.",
+  "main": "expo-router/entry",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/srrmntrjn/alarm-puzzle-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/srrmntrjn/alarm-puzzle-app/issues"
+  },
+  "homepage": "https://github.com/srrmntrjn/alarm-puzzle-app#readme",
+  "dependencies": {
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "@react-native-community/datetimepicker": "8.4.4",
+    "@types/react": "~19.1.10",
+    "expo": "^54.0.13",
+    "expo-asset": "~12.0.9",
+    "expo-constants": "~18.0.9",
+    "expo-font": "~14.0.9",
+    "expo-linking": "^8.0.8",
+    "expo-router": "^6.0.12",
+    "expo-status-bar": "~3.0.8",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.4",
+    "react-native-safe-area-context": "^5.6.1",
+    "react-native-screens": "~4.16.0",
+    "react-native-web": "^0.21.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.4",
+    "@types/react": "~18.2.79",
+    "typescript": "^5.9.3"
+  }
+}
