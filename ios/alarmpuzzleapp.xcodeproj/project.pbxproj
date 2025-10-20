@@ -8,25 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2F34C4BEE195AE5574DB23EB /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39AB0D665CE3B3DC44EAD8ED /* ExpoModulesProvider.swift */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		642FE15EDC74720F8820161B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E11246797ABF8B2A12A25D50 /* ExpoModulesProvider.swift */; };
-		8B701E6D1991CED47F1254ED /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 227518CA87C4321853D9F5E9 /* PrivacyInfo.xcprivacy */; };
+		BB2632621B86765B6DDF9266 /* libPods-alarmpuzzleapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5592B47DCBC4B62CDC0F2713 /* libPods-alarmpuzzleapp.a */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
+		D2AD2DB7B804B9DEE9A468EC /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 9C832B37048D25AF9CFE77E1 /* PrivacyInfo.xcprivacy */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F5BEABFD3984A14C7D185301 /* libPods-alarmpuzzleapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B83F7D4200B55DD3D253637 /* libPods-alarmpuzzleapp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0141125FED31BDB1E9ABFF79 /* Pods-alarmpuzzleapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmpuzzleapp.debug.xcconfig"; path = "Target Support Files/Pods-alarmpuzzleapp/Pods-alarmpuzzleapp.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* alarmpuzzleapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = alarmpuzzleapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = alarmpuzzleapp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = alarmpuzzleapp/Info.plist; sourceTree = "<group>"; };
-		16EDC70F8D3AD77C8C375588 /* Pods-alarmpuzzleapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmpuzzleapp.debug.xcconfig"; path = "Target Support Files/Pods-alarmpuzzleapp/Pods-alarmpuzzleapp.debug.xcconfig"; sourceTree = "<group>"; };
-		227518CA87C4321853D9F5E9 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = alarmpuzzleapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
-		5B83F7D4200B55DD3D253637 /* libPods-alarmpuzzleapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarmpuzzleapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		76031189D89665EF3521926E /* Pods-alarmpuzzleapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmpuzzleapp.release.xcconfig"; path = "Target Support Files/Pods-alarmpuzzleapp/Pods-alarmpuzzleapp.release.xcconfig"; sourceTree = "<group>"; };
+		22490D78CD92C67A66F47EA6 /* Pods-alarmpuzzleapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-alarmpuzzleapp.release.xcconfig"; path = "Target Support Files/Pods-alarmpuzzleapp/Pods-alarmpuzzleapp.release.xcconfig"; sourceTree = "<group>"; };
+		39AB0D665CE3B3DC44EAD8ED /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-alarmpuzzleapp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		5592B47DCBC4B62CDC0F2713 /* libPods-alarmpuzzleapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-alarmpuzzleapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C832B37048D25AF9CFE77E1 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; name = PrivacyInfo.xcprivacy; path = alarmpuzzleapp/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = alarmpuzzleapp/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		E11246797ABF8B2A12A25D50 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-alarmpuzzleapp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = alarmpuzzleapp/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* alarmpuzzleapp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "alarmpuzzleapp-Bridging-Header.h"; path = "alarmpuzzleapp/alarmpuzzleapp-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,28 +37,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5BEABFD3984A14C7D185301 /* libPods-alarmpuzzleapp.a in Frameworks */,
+				BB2632621B86765B6DDF9266 /* libPods-alarmpuzzleapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0371D18A98C4C4200A007AE4 /* ExpoModulesProviders */ = {
+		0929912B5416F20DE75FC6AF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BC10E5D3266F468D52EF3A3C /* alarmpuzzleapp */,
+				0141125FED31BDB1E9ABFF79 /* Pods-alarmpuzzleapp.debug.xcconfig */,
+				22490D78CD92C67A66F47EA6 /* Pods-alarmpuzzleapp.release.xcconfig */,
 			);
-			name = ExpoModulesProviders;
-			sourceTree = "<group>";
-		};
-		0A15A6FC779EEB6D318D97CB /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				16EDC70F8D3AD77C8C375588 /* Pods-alarmpuzzleapp.debug.xcconfig */,
-				76031189D89665EF3521926E /* Pods-alarmpuzzleapp.release.xcconfig */,
-			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -71,7 +62,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				227518CA87C4321853D9F5E9 /* PrivacyInfo.xcprivacy */,
+				9C832B37048D25AF9CFE77E1 /* PrivacyInfo.xcprivacy */,
 			);
 			name = alarmpuzzleapp;
 			sourceTree = "<group>";
@@ -80,9 +71,17 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				5B83F7D4200B55DD3D253637 /* libPods-alarmpuzzleapp.a */,
+				5592B47DCBC4B62CDC0F2713 /* libPods-alarmpuzzleapp.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		66FC68A46A7272F8F04CE899 /* alarmpuzzleapp */ = {
+			isa = PBXGroup;
+			children = (
+				39AB0D665CE3B3DC44EAD8ED /* ExpoModulesProvider.swift */,
+			);
+			name = alarmpuzzleapp;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -99,8 +98,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				0A15A6FC779EEB6D318D97CB /* Pods */,
-				0371D18A98C4C4200A007AE4 /* ExpoModulesProviders */,
+				0929912B5416F20DE75FC6AF /* Pods */,
+				AF98FF2954C54228980B0276 /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -115,6 +114,14 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		AF98FF2954C54228980B0276 /* ExpoModulesProviders */ = {
+			isa = PBXGroup;
+			children = (
+				66FC68A46A7272F8F04CE899 /* alarmpuzzleapp */,
+			);
+			name = ExpoModulesProviders;
+			sourceTree = "<group>";
+		};
 		BB2F792B24A3F905000567C9 /* Supporting */ = {
 			isa = PBXGroup;
 			children = (
@@ -122,14 +129,6 @@
 			);
 			name = Supporting;
 			path = alarmpuzzleapp/Supporting;
-			sourceTree = "<group>";
-		};
-		BC10E5D3266F468D52EF3A3C /* alarmpuzzleapp */ = {
-			isa = PBXGroup;
-			children = (
-				E11246797ABF8B2A12A25D50 /* ExpoModulesProvider.swift */,
-			);
-			name = alarmpuzzleapp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,13 +139,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "alarmpuzzleapp" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				C2D808B93CCF273D931F90E5 /* [Expo] Configure project */,
+				B8F023D429D4EEF5D88E30FC /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				6097AFAA111A5591DA752A12 /* [CP] Embed Pods Frameworks */,
+				48C76BFAA529F264AD84CF09 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +195,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				8B701E6D1991CED47F1254ED /* PrivacyInfo.xcprivacy in Resources */,
+				D2AD2DB7B804B9DEE9A468EC /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +241,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6097AFAA111A5591DA752A12 /* [CP] Embed Pods Frameworks */ = {
+		48C76BFAA529F264AD84CF09 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -300,7 +299,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-alarmpuzzleapp/Pods-alarmpuzzleapp-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C2D808B93CCF273D931F90E5 /* [Expo] Configure project */ = {
+		B8F023D429D4EEF5D88E30FC /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -332,7 +331,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				642FE15EDC74720F8820161B /* ExpoModulesProvider.swift in Sources */,
+				2F34C4BEE195AE5574DB23EB /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,12 +340,13 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 16EDC70F8D3AD77C8C375588 /* Pods-alarmpuzzleapp.debug.xcconfig */;
+			baseConfigurationReference = 0141125FED31BDB1E9ABFF79 /* Pods-alarmpuzzleapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = alarmpuzzleapp/alarmpuzzleapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y6ARJJTH3P;
 				ENABLE_BITCODE = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -377,12 +377,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76031189D89665EF3521926E /* Pods-alarmpuzzleapp.release.xcconfig */;
+			baseConfigurationReference = 22490D78CD92C67A66F47EA6 /* Pods-alarmpuzzleapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = alarmpuzzleapp/alarmpuzzleapp.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Y6ARJJTH3P;
 				INFOPLIST_FILE = alarmpuzzleapp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.1;
 				LD_RUNPATH_SEARCH_PATHS = (

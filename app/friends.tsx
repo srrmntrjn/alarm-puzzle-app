@@ -243,7 +243,10 @@ export default function FriendsScreen() {
                     <Text style={styles.statLabel}>Snoozes</Text>
                   </View>
                   <View style={styles.statItem}>
-                    <Text style={styles.statValue}>{stats.avgSnoozes.toFixed(1)}</Text>
+                    <View style={{ flexDirection: 'row', alignItems: 'baseline' }}>
+                      <Text style={styles.statValue}>{stats.avgSnoozes.toFixed(1)}</Text>
+                      <Text style={styles.statUnit}> min</Text>
+                    </View>
                     <Text style={styles.statLabel}>Avg</Text>
                   </View>
                 </View>
@@ -442,6 +445,12 @@ const styles = StyleSheet.create({
     fontSize: TYPOGRAPHY.xxl,
     fontWeight: TYPOGRAPHY.regular,
     color: COLORS.primary,
+  },
+  statUnit: {
+    fontSize: TYPOGRAPHY.sm,
+    fontWeight: TYPOGRAPHY.regular,
+    color: COLORS.textSecondary,
+    marginLeft: 4,
   },
   statLabel: {
     fontSize: TYPOGRAPHY.xs,

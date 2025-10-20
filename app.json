@@ -27,7 +27,12 @@
       "expo-asset",
       "expo-font",
       "expo-router",
-      "expo-notifications"
+      [
+        "expo-notifications",
+        {
+          "mode": "development"
+        }
+      ]
     ],
     "scheme": "alarmapp"
   }
